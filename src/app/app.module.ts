@@ -7,7 +7,7 @@ import { HeaderComponent } from './component/header/header.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { FormularioRegistroComponent } from './component/formulario-registro/formulario-registro.component';
 import { RegistroComponent } from './pages/registro/registro.component';
-import { PerfilComponent } from './component/perfil/perfil.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +16,10 @@ import { PerfilComponent } from './component/perfil/perfil.component';
     FooterComponent,
     FormularioRegistroComponent,
     RegistroComponent,
-    PerfilComponent
+    PerfilComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
