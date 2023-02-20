@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="card profile">
+    <img [src]="user.photoUrl" alt="" />
+    <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+    <table>
+      <tr>
+        <th>Nombre</th>
+        <td>{{ user.firstName }}</td>
+      </tr>
+      <tr>
+        <th>Apellidos</th>
+        <td>{{ user.lastName }}</td>
+      </tr>
+      <tr>
+        <th>Correo</th>
+        <td>{{ user.email }}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="card form">
+    <h1>Editar datos</h1>
+    <input #firstName type="text" placeholder="Nombre" />
+    <input #lastName type="text" placeholder="Apellidos" />
+    <input #email type="text" placeholder="Correo" />
+    <input #photoUrl type="text" placeholder="Url" />
+    <button (click)="updateUser(firstName, lastName, email, photoUrl)">
+      Modificar
+    </button>
+    <span [class]="messageStatus">{{ message }}</span>
+  </div>
+</div>
