@@ -8,6 +8,8 @@ import { FooterComponent } from './component/footer/footer.component';
 import { FormularioRegistroComponent } from './component/formulario-registro/formulario-registro.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
+import { LibrosComponent } from './pages/libros/libros.component';
+import { RefPipe } from './pipes/ref.pipe';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
     FormularioRegistroComponent,
     RegistroComponent,
     PerfilComponent,
+    LibrosComponent,
+    RefPipe,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

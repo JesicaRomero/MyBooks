@@ -1,0 +1,31 @@
+<button *ngIf="!displayForm" id="display-form" (click)="openForm()">
+  Añadir libro
+</button>
+<div *ngIf="displayForm" id="form">
+  <input #id type="number" placeholder="Id de libro" />
+  <input #userId type="number" placeholder="Id de usuario" />
+  <input #title type="text" placeholder="Titulo" />
+  <input #author type="text" placeholder="Autor" />
+  <input #price type="number" placeholder="Precio" />
+  <input #photo type="text" placeholder="Photo" />
+  <button (click)="addBook(id, userId, title, author, price, photo)">
+    Añadir
+  </button>
+</div>
+<div class="container" *ngIf="books.length > 0; else noBooks">
+  <div class="card" *ngFor="let book of books">
+    <img [src]="book.photo" alt="" />
+    <h2>{{ book.title }}</h2>
+    <p>Autor: {{ book.author }}</p>
+    <p>{{ book.id | ref }}</p>
+    <h2>{{ book.price }}€</h2>
+    <button>Comprar</button>
+  </div>
+</div>
+<ng-template #noBooks>
+  <div class="container">
+    <div class="card">
+      <h2>No hay libros</h2>
+    </div>
+  </div>
+</ng-template>
