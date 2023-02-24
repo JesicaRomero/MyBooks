@@ -1,7 +1,10 @@
-<button *ngIf="!displayForm" id="display-form" (click)="openForm()">
+<button *ngIf="!displayForm" id="display-form" (click)="openOrCloseForm()">
   Añadir libro
 </button>
 <div *ngIf="displayForm" id="form">
+  <span class="close-icon"
+    ><fa-icon (click)="openOrCloseForm()" [icon]="faCircleXmark"></fa-icon
+  ></span>
   <input #id type="number" placeholder="Id de libro" />
   <input #userId type="number" placeholder="Id de usuario" />
   <input #title type="text" placeholder="Titulo" />
@@ -12,8 +15,18 @@
     Añadir
   </button>
 </div>
+<div class="finder">
+  <input #bookId type="number" placeholder="Id de Libros" />
+  <button (click)="findBook(bookId.value)">
+    <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+  </button>
+</div>
+
 <div class="container" *ngIf="books.length > 0; else noBooks">
   <div class="card" *ngFor="let book of books">
+    <span class="close-icon"
+      ><fa-icon (click)="deleteBook(book.id)" [icon]="faCircleXmark"></fa-icon
+    ></span>
     <img [src]="book.photo" alt="" />
     <h2>{{ book.title }}</h2>
     <p>Autor: {{ book.author }}</p>

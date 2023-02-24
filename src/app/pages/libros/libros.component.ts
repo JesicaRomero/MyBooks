@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
+import {
+  faCircleXmark,
+  faMagnifyingGlass,
+} from '@fortawesome/free-solid-svg-icons';
+
 import { Libro } from 'src/app/models/libro';
+import { LibrosService } from 'src/app/services/libros.service';
 
 @Component({
   selector: 'app-libros',
@@ -7,36 +13,17 @@ import { Libro } from 'src/app/models/libro';
   styleUrls: ['./libros.component.css'],
 })
 export class LibrosComponent {
+  faCircleXmark = faCircleXmark;
+  faMagnifyingGlass = faMagnifyingGlass;
   displayForm: boolean = false;
-  books: Libro[] = [
-    {
-      id: 10,
-      userId: 1,
-      title: 'El juego de la oca',
-      author: 'Pablito Perez',
-      price: 20,
-      photo: 'https://loremflickr.com/320/240/books',
-    },
-    {
-      id: 11,
-      userId: 2,
-      title: 'Las flores del campo',
-      author: 'Maria Sonsoles',
-      price: 10,
-      photo: 'https://loremflickr.com/320/240/flowers',
-    },
-    {
-      id: 12,
-      userId: 3,
-      title: 'Mis canciones',
-      author: 'Juanito Valderrama',
-      price: 30,
-      photo: 'https://loremflickr.com/320/240/songs',
-    },
-  ];
+  books: Libro[] = [];
 
-  openForm() {
-    this.displayForm = true;
+  constructor(public librosService: LibrosService) {
+    this.books = librosService.getAll();
+  }
+
+  openOrCloseForm() {
+    this.displayForm = !this.displayForm;
   }
 
   addBook(
@@ -68,8 +55,6 @@ export class LibrosComponent {
       photo.value
     );
 
-    this.books.push(book);
-
     id.value = '';
     userId.value = '';
     title.value = '';
@@ -78,5 +63,24 @@ export class LibrosComponent {
     photo.value = '';
 
     this.displayForm = false;
+    this.librosService.add(book);
+  }
+
+  deleteBook(id: number) {
+    console.log(typeof id);
+    this.librosService.delete(id);
+  }
+
+  findBook(id: string) {
+    if (!id) {
+      this.books = this.librosService.getAll();
+      return;
+    }
+    const book = this.librosService.getOne(Number(id));
+    if (!book) {
+      this.books = [];
+      return;
+    }
+    this.books = [book];
   }
 }
