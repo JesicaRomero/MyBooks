@@ -10,8 +10,8 @@
   <input #title type="text" placeholder="Titulo" />
   <input #author type="text" placeholder="Autor" />
   <input #price type="number" placeholder="Precio" />
-  <input #photo type="text" placeholder="Photo" />
-  <button (click)="addBook(id, userId, title, author, price, photo)">
+  <input #photoUrl type="text" placeholder="Photo" />
+  <button (click)="addBook(id, userId, title, author, price, photoUrl)">
     Añadir
   </button>
 </div>
@@ -27,7 +27,7 @@
     <span class="close-icon"
       ><fa-icon (click)="deleteBook(book.id)" [icon]="faCircleXmark"></fa-icon
     ></span>
-    <img [src]="book.photo" alt="" />
+    <img [src]="book.photoUrl" alt="" />
     <h2>{{ book.title }}</h2>
     <p>Autor: {{ book.author }}</p>
     <p>{{ book.id | ref }}</p>

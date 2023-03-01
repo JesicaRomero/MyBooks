@@ -4,22 +4,22 @@ import {
   faMagnifyingGlass,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { Libro } from 'src/app/models/libro';
-import { LibrosService } from 'src/app/services/libros.service';
+import { Book } from 'src/app/models/book';
+import { BookService } from 'src/app/services/book.service';
 
 @Component({
-  selector: 'app-libros',
-  templateUrl: './libros.component.html',
-  styleUrls: ['./libros.component.css'],
+  selector: 'app-books',
+  templateUrl: './books.component.html',
+  styleUrls: ['./books.component.css'],
 })
-export class LibrosComponent {
+export class BooksComponent {
   faCircleXmark = faCircleXmark;
   faMagnifyingGlass = faMagnifyingGlass;
   displayForm: boolean = false;
-  books: Libro[] = [];
+  books: Book[] = [];
 
-  constructor(public librosService: LibrosService) {
-    this.books = librosService.getAll();
+  constructor(public bookService: BookService) {
+    this.books = bookService.getAll();
   }
 
   openOrCloseForm() {
@@ -32,7 +32,7 @@ export class LibrosComponent {
     title: HTMLInputElement,
     author: HTMLInputElement,
     price: HTMLInputElement,
-    photo: HTMLInputElement
+    photoUrl: HTMLInputElement
   ) {
     if (
       !id.value ||
@@ -40,19 +40,19 @@ export class LibrosComponent {
       !title.value ||
       !author.value ||
       !price.value ||
-      !photo.value
+      !photoUrl.value
     ) {
       this.displayForm = false;
       return;
     }
 
-    const book = new Libro(
+    const book = new Book(
       Number(id.value),
       Number(userId.value),
       title.value,
       author.value,
       Number(price.value),
-      photo.value
+      photoUrl.value
     );
 
     id.value = '';
@@ -60,23 +60,23 @@ export class LibrosComponent {
     title.value = '';
     author.value = '';
     price.value = '';
-    photo.value = '';
+    photoUrl.value = '';
 
     this.displayForm = false;
-    this.librosService.add(book);
+    this.bookService.add(book);
   }
 
   deleteBook(id: number) {
     console.log(typeof id);
-    this.librosService.delete(id);
+    this.bookService.delete(id);
   }
 
   findBook(id: string) {
     if (!id) {
-      this.books = this.librosService.getAll();
+      this.books = this.bookService.getAll();
       return;
     }
-    const book = this.librosService.getOne(Number(id));
+    const book = this.bookService.getOne(Number(id));
     if (!book) {
       this.books = [];
       return;
