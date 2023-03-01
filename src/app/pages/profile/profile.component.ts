@@ -2,18 +2,18 @@ import { Component } from '@angular/core';
 import { User } from 'src/app/models/user';
 
 @Component({
-  selector: 'app-perfil',
-  templateUrl: './perfil.component.html',
-  styleUrls: ['./perfil.component.css'],
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css'],
 })
-export class PerfilComponent {
+export class ProfileComponent {
   user: User;
   message: string;
   messageStatus: string;
 
   constructor() {
     this.user = {
-      userId: 0,
+      id: 0,
       firstName: 'Jesica',
       lastName: 'Romero',
       email: 'jesica@gmail.com',

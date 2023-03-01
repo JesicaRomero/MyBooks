@@ -6,10 +6,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './component/header/header.component';
 import { FooterComponent } from './component/footer/footer.component';
-import { FormularioRegistroComponent } from './component/formulario-registro/formulario-registro.component';
-import { RegistroComponent } from './pages/registro/registro.component';
-import { PerfilComponent } from './pages/perfil/perfil.component';
-import { LibrosComponent } from './pages/libros/libros.component';
+import { RegisterFormComponent } from './component/register-form/register-form.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { BooksComponent } from './pages/books/books.component';
 import { RefPipe } from './pipes/ref.pipe';
 
 @NgModule({
@@ -17,10 +17,10 @@ import { RefPipe } from './pipes/ref.pipe';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    FormularioRegistroComponent,
-    RegistroComponent,
-    PerfilComponent,
-    LibrosComponent,
+    RegisterFormComponent,
+    RegisterComponent,
+    ProfileComponent,
+    BooksComponent,
     RefPipe,
   ],
   imports: [BrowserModule, AppRoutingModule, FontAwesomeModule],

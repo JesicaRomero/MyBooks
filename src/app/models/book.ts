@@ -1,10 +1,10 @@
-export class Libro {
+export class Book {
   constructor(
     public id: number,
     public userId: number,
     public title: string,
     public author: string,
     public price: number,
-    public photo: string
+    public photoUrl: string
   ) {}
 }

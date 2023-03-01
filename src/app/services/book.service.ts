@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Libro } from '../models/libro';
+import { Book } from '../models/book';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LibrosService {
-  public books: Libro[] = [
+export class BookService {
+  public books: Book[] = [
     {
       id: 10,
       userId: 1,
       title: 'El juego de la oca',
       author: 'Pablito Perez',
       price: 20,
-      photo: 'https://loremflickr.com/320/240/books',
+      photoUrl: 'https://loremflickr.com/320/240/books',
     },
     {
       id: 11,
@@ -20,7 +20,7 @@ export class LibrosService {
       title: 'Las flores del campo',
       author: 'Maria Sonsoles',
       price: 10,
-      photo: 'https://loremflickr.com/320/240/flowers',
+      photoUrl: 'https://loremflickr.com/320/240/flowers',
     },
     {
       id: 12,
@@ -28,27 +28,27 @@ export class LibrosService {
       title: 'Mis canciones',
       author: 'Juanito Valderrama',
       price: 30,
-      photo: 'https://loremflickr.com/320/240/songs',
+      photoUrl: 'https://loremflickr.com/320/240/songs',
     },
   ];
 
   constructor() {}
 
-  getAll(): Libro[] {
+  getAll(): Book[] {
     return this.books;
   }
 
-  getOne(id: number): Libro {
-    const book = this.books.find((book: Libro) => book.id === id);
+  getOne(id: number): Book {
+    const book = this.books.find((book: Book) => book.id === id);
     return book;
   }
 
-  add(book: Libro): void {
+  add(book: Book): void {
     this.books.push(book);
   }
 
   delete(id: number): boolean {
-    const index = this.books.findIndex((book: Libro) => book.id === id);
+    const index = this.books.findIndex((book: Book) => book.id === id);
     if (index < 0) return false;
     this.books.splice(index, 1);
     return true;
