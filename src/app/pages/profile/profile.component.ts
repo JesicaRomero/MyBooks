@@ -13,7 +13,6 @@ export class ProfileComponent {
 
   constructor() {
     this.user = {
-      id: 0,
       firstName: 'Jesica',
       lastName: 'Romero',
       email: 'jesica@gmail.com',

@@ -1,0 +1,20 @@
+.container {
+  min-height: calc(100vh - 120px);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  border: 1px solid #aaa;
+  width: 500px;
+  text-align: center;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #eee;
+}
+
+h1 {
+  text-decoration: underline;
+}

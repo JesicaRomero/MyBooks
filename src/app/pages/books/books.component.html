@@ -5,15 +5,11 @@
   <span class="close-icon"
     ><fa-icon (click)="openOrCloseForm()" [icon]="faCircleXmark"></fa-icon
   ></span>
-  <input #id type="number" placeholder="Id de libro" />
-  <input #userId type="number" placeholder="Id de usuario" />
   <input #title type="text" placeholder="Titulo" />
   <input #author type="text" placeholder="Autor" />
   <input #price type="number" placeholder="Precio" />
   <input #photoUrl type="text" placeholder="Photo" />
-  <button (click)="addBook(id, userId, title, author, price, photoUrl)">
-    Añadir
-  </button>
+  <button (click)="addBook(title, author, price, photoUrl)">Añadir</button>
 </div>
 <div class="finder">
   <input #bookId type="number" placeholder="Id de Libros" />

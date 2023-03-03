@@ -1,56 +1,33 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 import { Book } from '../models/book';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookService {
-  public books: Book[] = [
-    {
-      id: 10,
-      userId: 1,
-      title: 'El juego de la oca',
-      author: 'Pablito Perez',
-      price: 20,
-      photoUrl: 'https://loremflickr.com/320/240/books',
-    },
-    {
-      id: 11,
-      userId: 2,
-      title: 'Las flores del campo',
-      author: 'Maria Sonsoles',
-      price: 10,
-      photoUrl: 'https://loremflickr.com/320/240/flowers',
-    },
-    {
-      id: 12,
-      userId: 3,
-      title: 'Mis canciones',
-      author: 'Juanito Valderrama',
-      price: 30,
-      photoUrl: 'https://loremflickr.com/320/240/songs',
-    },
-  ];
+  private url = 'http://localhost:3000/books';
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  getAll(): Book[] {
-    return this.books;
+  getAll(userId: number): Observable<Object> {
+    const params = { userId };
+    return this.http.get(this.url, { params });
   }
 
-  getOne(id: number): Book {
-    const book = this.books.find((book: Book) => book.id === id);
-    return book;
+  getOne(userId: number, id: number): Observable<Object> {
+    const params = { userId, id };
+    return this.http.get(this.url, { params });
   }
 
-  add(book: Book): void {
-    this.books.push(book);
+  add(book: Book): Observable<Object> {
+    return this.http.post(this.url, book);
   }
 
-  delete(id: number): boolean {
-    const index = this.books.findIndex((book: Book) => book.id === id);
-    if (index < 0) return false;
-    this.books.splice(index, 1);
-    return true;
+  delete(id: number): Observable<Object> {
+    const params = { id };
+    return this.http.delete(this.url, { params });
   }
 }
