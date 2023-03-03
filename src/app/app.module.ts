@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +12,8 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { BooksComponent } from './pages/books/books.component';
 import { RefPipe } from './pipes/ref.pipe';
+import { LoginComponent } from './pages/login/login.component';
+import { LoginFormComponent } from './component/login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +25,15 @@ import { RefPipe } from './pipes/ref.pipe';
     ProfileComponent,
     BooksComponent,
     RefPipe,
+    LoginComponent,
+    LoginFormComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FontAwesomeModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FontAwesomeModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

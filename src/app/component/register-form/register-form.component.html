@@ -1,7 +1,9 @@
 <div class="form">
-  <input type="text" placeholder="Nombre" />
-  <input type="text" placeholder="Apellidos" />
-  <input type="email" placeholder="Email" />
-  <input type="password" placeholder="Contraseña" />
-  <button>Enviar</button>
+  <input #firstName type="text" placeholder="Nombre" />
+  <input #lastName type="text" placeholder="Apellidos" />
+  <input #email type="email" placeholder="Email" />
+  <input #photoUrl type="text" placeholder="Url foto" />
+  <button (click)="register(firstName, lastName, email, photoUrl)">
+    Enviar
+  </button>
 </div>

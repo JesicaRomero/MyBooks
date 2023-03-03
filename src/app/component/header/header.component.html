@@ -4,10 +4,15 @@
   </div>
   <div class="navbar-menu">
     <ul>
-      <li routerLink="/">Home</li>
-      <li routerLink="/register">Registro</li>
-      <li routerLink="/profile">Perfil</li>
-      <li routerLink="/books">Libros</li>
+      <li *ngIf="!userService.loggedIn" routerLink="/">Home</li>
+      <li *ngIf="userService.loggedIn" routerLink="/profile">Perfil</li>
+      <li *ngIf="userService.loggedIn" routerLink="/books">Libros</li>
+    </ul>
+  </div>
+  <div class="navbar-menu auth">
+    <ul>
+      <li *ngIf="!userService.loggedIn" routerLink="/register">Registro</li>
+      <li *ngIf="!userService.loggedIn" routerLink="/login">Login</li>
     </ul>
   </div>
 </div>
