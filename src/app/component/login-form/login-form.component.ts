@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ApiResponse } from 'src/app/models/api-response';
+import { User } from 'src/app/models/user';
 
 import { UserService } from 'src/app/services/user.service';
 
@@ -9,25 +12,25 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./login-form.component.css'],
 })
 export class LoginFormComponent {
+  email: string;
+
   constructor(public userService: UserService, private router: Router) {}
 
-  login(email: HTMLInputElement) {
-    if (!email.value) {
-      return;
-    }
-    this.userService.login(email.value).subscribe(
-      (data: any) => {
-        if (data.user) {
+  login(form: NgForm) {
+    const { email } = form.value;
+    this.userService.login(email).subscribe({
+      next: (value: { user: User } | ApiResponse) => {
+        if ('user' in value) {
           this.userService.loggedIn = true;
-          this.userService.user = data.user;
+          this.userService.user = value.user;
           this.router.navigate(['/books']);
+        } else {
+          console.log(value.message);
         }
       },
-      (error: Error) => {
+      error: (error: Error) => {
         console.log(error);
-      }
-    );
-
-    email.value = '';
+      },
+    });
   }
 }
