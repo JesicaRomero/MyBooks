@@ -1,4 +1,10 @@
-<div class="form">
-  <input #email type="email" placeholder="Email" />
-  <button (click)="login(email)">Login</button>
-</div>
+<form #loginForm="ngForm" (ngSubmit)="login(loginForm)" ngNativeValidate>
+  <input
+    type="email"
+    name="email"
+    placeholder="Email"
+    [(ngModel)]="email"
+    required
+  />
+  <button>Login</button>
+</form>

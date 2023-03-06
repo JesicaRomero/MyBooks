@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ApiResponse } from 'src/app/models/api-response';
 
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
@@ -9,36 +12,45 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./register-form.component.css'],
 })
 export class RegisterFormComponent {
-  constructor(public userService: UserService) {}
+  user: User;
 
-  register(
-    firstName: HTMLInputElement,
-    lastName: HTMLInputElement,
-    email: HTMLInputElement,
-    photoUrl: HTMLInputElement
-  ) {
-    if (
-      !firstName.value ||
-      !lastName.value ||
-      !email.value ||
-      !photoUrl.value
-    ) {
-      return;
-    }
-    const user = new User(
-      firstName.value,
-      lastName.value,
-      email.value,
-      photoUrl.value
-    );
+  constructor(public userService: UserService, private router: Router) {
+    this.user = {
+      firstName: '',
+      lastName: '',
+      email: '',
+      photoUrl: '',
+    };
+  }
 
-    firstName.value = '';
-    lastName.value = '';
-    email.value = '';
-    photoUrl.value = '';
+  register(form: NgForm) {
+    const user = form.value;
+    this.userService.register(user).subscribe({
+      next: (data: ApiResponse) => {
+        if (data.ok) {
+          this.autoLogin(user.email);
+        }
+      },
+      error: (error: Error) => {
+        console.log(error);
+      },
+    });
+  }
 
-    this.userService.register(user).subscribe((data: any) => {
-      console.log(data);
+  autoLogin(email: string) {
+    this.userService.login(email).subscribe({
+      next: (value: { user: User } | ApiResponse) => {
+        if ('user' in value) {
+          this.userService.loggedIn = true;
+          this.userService.user = value.user;
+          this.router.navigate(['/books']);
+        } else {
+          console.log(value.message);
+        }
+      },
+      error: (error: Error) => {
+        console.log(error);
+      },
     });
   }
 }

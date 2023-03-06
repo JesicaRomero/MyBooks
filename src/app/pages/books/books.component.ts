@@ -3,6 +3,7 @@ import {
   faCircleXmark,
   faMagnifyingGlass,
 } from '@fortawesome/free-solid-svg-icons';
+import { ApiResponse } from 'src/app/models/api-response';
 
 import { Book } from 'src/app/models/book';
 import { BookService } from 'src/app/services/book.service';
@@ -24,16 +25,19 @@ export class BooksComponent {
     public bookService: BookService,
     public userService: UserService
   ) {
-    this.userId = this.userService.user.id || undefined;
+    this.userId = this.userService.user?.id || undefined;
     this.getAllBooks();
   }
 
   getAllBooks() {
-    this.bookService
-      .getAll(this.userId)
-      .subscribe((data: { books: Book[] }) => {
-        this.books = data.books;
-      });
+    this.bookService.getAll(this.userId).subscribe({
+      next: (value: { books: Book[] }) => {
+        this.books = value.books;
+      },
+      error: (error: Error) => {
+        console.log(error);
+      },
+    });
   }
 
   openOrCloseForm() {
@@ -65,14 +69,19 @@ export class BooksComponent {
     photoUrl.value = '';
 
     this.displayForm = false;
-    this.bookService.add(book).subscribe((data: any) => {
-      if (data.ok) this.getAllBooks();
+    this.bookService.add(book).subscribe((value: ApiResponse) => {
+      if (value.ok) this.getAllBooks();
     });
   }
 
   deleteBook(id: number) {
-    this.bookService.delete(id).subscribe((data: any) => {
-      if (data.ok) this.getAllBooks();
+    this.bookService.delete(id).subscribe({
+      next: (value: ApiResponse) => {
+        if (value.ok) this.getAllBooks();
+      },
+      error: (error: Error) => {
+        console.log(error);
+      },
     });
   }
 
@@ -81,10 +90,13 @@ export class BooksComponent {
       this.getAllBooks();
       return;
     }
-    this.bookService
-      .getOne(this.userId, Number(id))
-      .subscribe((data: { books: Book[] }) => {
-        this.books = data.books;
-      });
+    this.bookService.getOne(this.userId, Number(id)).subscribe({
+      next: (value: { books: Book[] }) => {
+        this.books = value.books;
+      },
+      error: (error: Error) => {
+        console.log(error);
+      },
+    });
   }
 }
