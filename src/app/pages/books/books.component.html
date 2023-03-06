@@ -19,17 +19,11 @@
 </div>
 
 <div class="container" *ngIf="books.length > 0; else noBooks">
-  <div class="card" *ngFor="let book of books">
-    <span class="close-icon"
-      ><fa-icon (click)="deleteBook(book.id)" [icon]="faCircleXmark"></fa-icon
-    ></span>
-    <img [src]="book.photoUrl" alt="" />
-    <h2>{{ book.title }}</h2>
-    <p>Autor: {{ book.author }}</p>
-    <p>{{ book.id | ref }}</p>
-    <h2>{{ book.price }}€</h2>
-    <button>Comprar</button>
-  </div>
+  <app-card
+    *ngFor="let book of books"
+    [book]="book"
+    (deleteBookEvent)="deleteBook($event)"
+  ></app-card>
 </div>
 <ng-template #noBooks>
   <div class="container">
