@@ -15,6 +15,7 @@ import { BooksComponent } from './pages/books/books.component';
 import { RefPipe } from './pipes/ref.pipe';
 import { LoginComponent } from './pages/login/login.component';
 import { LoginFormComponent } from './component/login-form/login-form.component';
+import { CardComponent } from './component/card/card.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { LoginFormComponent } from './component/login-form/login-form.component'
     RefPipe,
     LoginComponent,
     LoginFormComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,51 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid #aaa;
+  background-color: #eee;
+  border-radius: 10px;
+  height: 450px;
+  width: 300px;
+}
+
+img {
+  width: 200px;
+  height: 200px;
+  border-radius: 5%;
+  border: 2px solid #000;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+p,
+h2 {
+  margin-top: 10px;
+}
+
+button {
+  height: 40px;
+  border-radius: 5px;
+  background-color: var(--blue);
+  border: 1px solid var(--blue);
+  color: #fff;
+  margin-top: 30px;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #fff;
+  color: var(--blue);
+  border: 3px solid var(--blue);
+}
+
+.close-icon {
+  width: 100%;
+  text-align: right;
+  color: #999;
+  font-size: x-large;
+}
+
+.close-icon fa-icon {
+  cursor: pointer;
+}
